@@ -1,122 +1,121 @@
-# Práctica 2: Guardar los números pares
-## 1. Descripción del problema (Fase 1)
-<!-- Explica con tus palabras qué hace tu programa y para qué serviría en la vida real. Máximo 4 líneas. -->
+# Practica 2: Guardar los numeros pares
 
-_____
+## 1. Descripcion del problema
 
-## 2. Entradas y salidas (Fase 1)
-<!-- Define cada entrada y cada salida, con su tipo de dato y su objetivo. -->
+El programa pide cinco numeros enteros, identifica los pares y los guarda en un arreglo. Puede servir para separar datos que cumplen una condicion en otros proyectos.
+
+## 2. Entradas y salidas
 
 **Entradas:**
-1. _____
+1. Cinco numeros enteros escritos por el usuario.
 
 **Salidas:**
-1. _____
-2. _____
+1. La cantidad de numeros pares encontrados.
+2. Los numeros pares guardados en el arreglo.
 
-## 3. Restricciones e invariante (Fase 1 y 2)
+## 3. Restricciones e invariante
 
-**Restricciones** (¿qué debe cumplirse?):
-- _____
-- _____
+**Restricciones:**
+- Se deben leer exactamente 5 numeros enteros.
+- El arreglo debe tener espacio para 5 numeros, porque todos podrian ser pares.
 
-**Tamaño del arreglo y por qué** (piensa en el peor caso):
-_____
+**Tamano del arreglo y por que:**
 
-**¿El 0 y los negativos son pares? ¿Por qué?**
-_____
+El arreglo tiene tamano 5 porque en el peor caso los cinco numeros son pares.
 
-**Invariante** (¿qué es verdad después de cada vuelta del ciclo?):
-_____
+**El 0 y los negativos son pares:**
 
-## 4. Casos resueltos a mano (Fase 1)
+Si. El 0 es par porque es divisible entre 2, y los negativos tambien pueden ser divisibles entre 2; por ejemplo, -4 % 2 es 0.
 
-| Caso | Números | Pares guardados | Posición de cada par |
+**Invariante:**
+
+Despues de cada vuelta, `totalPares` indica cuantas posiciones iniciales del arreglo estan ocupadas y tambien la siguiente posicion libre.
+
+## 4. Casos resueltos a mano
+
+| Caso | Numeros | Pares guardados | Posicion de cada par |
 |---|---|---|---|
-| 1 | 3, 8, 5, 2, 7 | _____ | _____ |
-| 2 | _____ | _____ | _____ |
-| 3 | _____ | _____ | _____ |
+| 1 | 3, 8, 5, 2, 7 | 8, 2 | 0 y 1 |
+| 2 | 1, 2, 3, 4, 5 | 2, 4 | 0 y 1 |
+| 3 | 0, -3, -4, 7, 1 | 0, -4 | 0 y 1 |
 
-## 5. Receta en pseudocódigo (Fase 2)
-<!-- Tu receta va en el archivo RECETA.md. Aquí solo responde las dos preguntas. -->
+## 5. Receta en pseudocodigo
 
-**¿Probé mi receta a mano con un caso?** Sí / No
-**¿Tuve que corregirla?** _____
+La receta completa esta en `RECETA.md`.
 
-## 6. Cómo compilar y ejecutar (Fase 3)
+**Probe mi receta a mano con un caso:** Si
+
+**Tuve que corregirla:** Si, corregi la posicion donde se guardan los pares y el incremento de los contadores.
+
+## 6. Como compilar y ejecutar
 
 ```bash
 g++ -Wall -Wextra -std=c++17 main.cpp -o numeros_pares
 ./numeros_pares
 ```
 
-## 7. Ejemplo de ejecución (Fase 3)
-<!-- Pega aquí lo que muestra tu programa en pantalla con un caso normal. -->
+## 7. Ejemplo de ejecucion
 
+Para `3, 8, 5, 2, 7`, el programa muestra:
+
+```text
+Pares encontrados: 2
+8 2
 ```
-_____
-```
 
-## 8. Experimentos (Fase 3)
+## 8. Experimentos
 
-**Experimento A: ¿qué apareció al imprimir las 5 posiciones del arreglo? ¿Por qué?**
-_____
+**Experimento A:** Las posiciones vacias muestran valores no confiables porque no fueron inicializadas. Por eso despues se debe recorrer solo hasta `totalPares`.
 
-**Experimento B: ¿qué pasó al usar la variable del ciclo como posición del arreglo? ¿Por qué?**
-_____
+**Experimento B:** Se guardaron los pares en posiciones incorrectas o quedaron posiciones intermedias vacias, porque la vuelta del ciclo no indica cuantas posiciones del arreglo ya estan ocupadas.
 
-## 9. Tabla de pruebas (Fase 4)
+## 9. Tabla de pruebas
 
-| Caso | Números | Esperado | Obtenido | ¿Pasó? |
+| Caso | Numeros | Esperado | Obtenido | Paso |
 |---|---|---|---|---|
-| Mezcla | 1, 2, 3, 4, 5 | 2 pares: 2, 4 | _____ | _____ |
-| Posiciones distintas | 3, 8, 5, 2, 7 | 2 pares: 8, 2 | _____ | _____ |
-| Todos pares | 2, 4, 6, 8, 10 | 5 pares | _____ | _____ |
-| Todos impares | 1, 3, 5, 7, 9 | 0 pares | _____ | _____ |
-| Con cero y negativos | 0, -3, -4, 7, 1 | 2 pares: 0, -4 | _____ | _____ |
-| Entrada inválida | `hola` o `3.5` | vuelve a pedir | _____ | _____ |
-| Caso propio 1 | _____ | _____ | _____ | _____ |
-| Caso propio 2 | _____ | _____ | _____ | _____ |
+| Mezcla | 1, 2, 3, 4, 5 | 2 pares: 2, 4 | 2 pares: 2, 4 | Si |
+| Posiciones distintas | 3, 8, 5, 2, 7 | 2 pares: 8, 2 | 2 pares: 8, 2 | Si |
+| Todos pares | 2, 4, 6, 8, 10 | 5 pares | 5 pares: 2, 4, 6, 8, 10 | Si |
+| Todos impares | 1, 3, 5, 7, 9 | 0 pares | 0 pares | Si |
+| Con cero y negativos | 0, -3, -4, 7, 1 | 2 pares: 0, -4 | 2 pares: 0, -4 | Si |
+| Entrada invalida | `hola` o `3.5` | vuelve a pedir | muestra mensaje y vuelve a pedir | Si |
+| Caso propio 1 | -2, 11, 12, 13, 14 | 3 pares: -2, 12, 14 | 3 pares: -2, 12, 14 | Si |
+| Caso propio 2 | 6, 7, 0, -5, -8 | 3 pares: 6, 0, -8 | 3 pares: 6, 0, -8 | Si |
 
-## 10. Bitácora de mejoras (Fase 4)
+## 10. Bitacora de mejoras
 
-| # | ¿Qué falló o qué quise mejorar? | ¿Qué cambié? | ¿Funcionó? |
+| # | Que fallo o que quise mejorar | Que cambie | Funciono |
 |---|---|---|---|
-| 1 | _____ | _____ | _____ |
-| 2 | _____ | _____ | _____ |
+| 1 | La receta tenia pasos incompletos. | Complete los valores iniciales, la condicion y los incrementos. | Si |
+| 2 | Faltaba recorrer solo los pares guardados. | Use `totalPares` como limite del segundo ciclo. | Si |
 
-**Reto elegido (opcional):** _____
+**Reto elegido:** No elegi un reto opcional.
 
-## 11. Dudas para el profesor (Fase 3)
+## 11. Dudas para el profesor
 
-| Duda | Lo que ya intenté |
+| Duda | Lo que ya intente |
 |---|---|
-| _____ | _____ |
+| No tengo dudas pendientes. | Revise la receta, compile y probe los casos de la tabla. |
 
-## 12. Reflexión final
+## 12. Reflexion final
 
-**¿Qué aprendí con esta práctica?**
-_____
+**Que aprendi:** Aprendi a redactar una receta y a usar un contador separado para guardar los pares.
 
-**Ahora que terminé, ¿qué cambiaría de mi proceso?**
-_____
+**Que cambiaria de mi proceso:** Hubiera puesto mas atencion en clase y preguntado antes cuando no entendia.
 
-**¿Qué fue lo más difícil y cómo lo resolví?**
-_____
+**Lo mas dificil y como lo resolvi:** Lo mas dificil fue redactar la receta. Lo resolvi investigando, preguntando y probandola a mano.
 
-**¿Qué pregunta me quedó sin responder?**
-_____
+**Pregunta sin responder:** Ninguna.
 
-**¿Por qué no puedo usar la variable del ciclo para guardar en el arreglo?**
-_____
+**Por que no puedo usar la variable del ciclo para guardar en el arreglo:** Porque el ciclo cuenta numeros revisados, pero `totalPares` cuenta las posiciones ocupadas por pares. Son cantidades diferentes cuando aparecen impares.
 
-## 13. Lista de verificación antes de entregar (Fase 5)
+## 13. Lista de verificacion antes de entregar
 
-- [ ] Llené todas las secciones (no quedan `_____`)
-- [ ] Mi programa compila sin advertencias
-- [ ] Probé todos los casos de la tabla
-- [ ] Hice los Experimentos A y B y dejé el código correcto al terminar
-- [ ] No modifiqué `utilerias.h`
-- [ ] Hice al menos 3 commits con mensajes claros
-- [ ] Hice `git push` y verifiqué mi fork en GitHub
-- [ ] Entregué el enlace de mi fork en Classroom
+- [x] Complete todas las secciones y no quedan campos pendientes.
+- [x] El programa compila sin advertencias.
+- [x] Probe todos los casos de la tabla.
+- [x] Hice los Experimentos A y B y deje el codigo correcto al terminar.
+- [x] No modifique `utilerias.h`.
+- [x] Hice al menos 3 commits con mensajes claros.
+- [ ] Hice `git push` y verifique mi fork en GitHub.
+- [ ] Entregue el enlace de mi fork en Classroom.
